@@ -1,21 +1,21 @@
 package hu.nive.ujratervezes.oopcollection.army;
 
 public class Swordsman extends MilitaryUnit{
+    private boolean hasShield;
 
-    private boolean hasShield = true;
-
-    public Swordsman(boolean hasArmor) {
-        this.hitPoints = 100;
-        this.damage = 10;
+    Swordsman(boolean hasArmor) {
+        hp = 100;
+        damage = 10;
         this.hasArmor = hasArmor;
+        hasShield = true;
     }
-
 
     @Override
-    public int doDamage() {
-        this.hasArmor = false;
-        return this.damage;
+    void sufferDamage(int damage) {
+        if (!hasShield) {
+            if (hasArmor) {
+                hp = hp - (damage / 2);
+            } else hp = hp - damage;
+        } else hasShield = false;
     }
-
-
 }

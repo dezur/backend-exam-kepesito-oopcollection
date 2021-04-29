@@ -1,26 +1,28 @@
 package hu.nive.ujratervezes.oopcollection.army;
 
 public class HeavyCavalry extends MilitaryUnit{
-
-    private boolean isFirstAttack = true;
+    private boolean hasShield = true;
 
     public HeavyCavalry() {
-        this.hitPoints = 150;
-        this.damage = 20;
-        this.hasArmor = true;
-    }
+        hp = 150;
+        damage = 20;
+        hasArmor = true;
 
+    }
     @Override
-    public int doDamage() {
-        if (isFirstAttack) {
-            isFirstAttack = false;
-            return this.damage * 3;
+    int doDamage() {
+        if (hasShield) {
+            hasShield = false;
+            return damage * 3;
         }
-        return this.damage;
+        else return damage;
     }
 
+
     @Override
-    public void sufferDamage(int damage) {
-        this.hitPoints -= (damage / 2);
+    void sufferDamage(int damage) {
+        if (hasArmor) {
+            hp = hp - (damage / 2);
+        } else hp = hp - damage;
     }
 }

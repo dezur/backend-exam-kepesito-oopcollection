@@ -82,7 +82,7 @@ class ArmyTest {
         Archer archer = new Archer();
         assertEquals(20, archer.doDamage());
         archer.sufferDamage(20);
-        assertEquals(30, archer.getHitPoints());
+        assertEquals(30, archer.getHp());
     }
 
     @Test
@@ -91,16 +91,16 @@ class ArmyTest {
         assertEquals(60, heavyCavalry.doDamage());
         assertEquals(20, heavyCavalry.doDamage());
         heavyCavalry.sufferDamage(20);
-        assertEquals(140, heavyCavalry.getHitPoints());
+        assertEquals(140, heavyCavalry.getHp());
     }
 
     @Test
     void testSwordsmanArmored() {
         Swordsman swordsman = new Swordsman(true);
         swordsman.sufferDamage(20);
-        assertEquals(100, swordsman.getHitPoints());
+        assertEquals(100, swordsman.getHp());
         swordsman.sufferDamage(20);
-        assertEquals(90, swordsman.getHitPoints());
+        assertEquals(90, swordsman.getHp());
         assertEquals(10, swordsman.doDamage());
     }
 
@@ -108,9 +108,9 @@ class ArmyTest {
     void testSwordsmanUnarmored() {
         Swordsman swordsman = new Swordsman(false);
         swordsman.sufferDamage(20);
-        assertEquals(100, swordsman.getHitPoints());
+        assertEquals(100, swordsman.getHp());
         swordsman.sufferDamage(20);
-        assertEquals(80, swordsman.getHitPoints());
+        assertEquals(80, swordsman.getHp());
         assertEquals(10, swordsman.doDamage());
     }
 }

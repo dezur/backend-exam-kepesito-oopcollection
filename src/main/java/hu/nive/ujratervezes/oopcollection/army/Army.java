@@ -1,31 +1,35 @@
 package hu.nive.ujratervezes.oopcollection.army;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Army {
-    private final List<MilitaryUnit> militaryUnits = new ArrayList<>();
+
+    private List<MilitaryUnit> armyList = new ArrayList<>();
 
     public void addUnit(MilitaryUnit militaryUnit) {
-        militaryUnits.add(militaryUnit);
+        armyList.add(militaryUnit);
     }
 
     public void damageAll(int damage) {
-        for (MilitaryUnit militaryUnit: militaryUnits) {
-            militaryUnit.setHitPoints(militaryUnit.getHitPoints() - damage);
-            if(militaryUnit.getHitPoints() < 25) {
-                militaryUnits.remove(militaryUnit);
+
+        for (int i = 0; i < getArmySize(); i++) {
+            armyList.get(i).sufferDamage(damage);
+            if (armyList.get(i).getHp() < 25) {
+                armyList.remove(i);
+                i--;
             }
         }
     }
 
     public int getArmyDamage() {
-        return militaryUnits.stream()
-                .mapToInt(MilitaryUnit::getDamage)
-                .sum();
+        int result = 0;
+        for (MilitaryUnit unit : armyList) {
+            result += unit.doDamage();
+        }
+        return result;
     }
 
     public int getArmySize() {
-        return militaryUnits.size();
+        return armyList.size();
     }
 }
